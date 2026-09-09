@@ -1,6 +1,6 @@
 ---
 name: microdots-manage
-description: Inspect and manage MicroDots that already exist and their runtime Catalog lifecycle: exact identities, selected versus latest version, updates, compatibility impact, replacement, deprecation, retirement and reinstatement. Use for status and inspection requests against an existing artifact, for catalog registration and version selection, and for reconciling a partially completed batch or a failed publication. Inspection stays read-only. Publishing, deployment and production changes remain separately scoped requests.
+description: Inspect and manage MicroDots that already exist, and their runtime Catalog lifecycle. Use for "what version is selected", "what is the latest version of X", "register this build", "retire this dot", "reinstate it", "what consumers break if I change this", "the publication failed halfway" — identity, selected versus latest version, compatibility impact, replacement, deprecation, retirement, reinstatement, and reconciling a partially completed batch. Not for proving a change works (bespoke-agentics:microdots-verify) or for deploying (microdots-deploy).
 ---
 
 # Manage MicroDots

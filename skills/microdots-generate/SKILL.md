@@ -1,6 +1,6 @@
 ---
 name: microdots-generate
-description: Generate MicroDots in resumable batches through the repository compiler or explicit reference-dot scaffolding, coordinating isolated subagents, dependency order, per-item verification and scoped local catalog registration. Use for several MicroDots at once, for resuming or recovering a partial batch, or when generation is blocked on a framework capability that does not exist yet. A single ordinary MicroDot with no batch, no dependency and no missing capability belongs to the workspace's own single-dot authoring skill. Never silently extends the framework to close a gap.
+description: Generate MicroDots in resumable batches. Use for "generate these five dots", "build the dots in this brief", "resume the batch", "the batch failed halfway" — several MicroDots at once, with dependency order, isolated subagents, per-item verification and scoped local catalog registration. When a batch turns out to be blocked on a capability that does not exist, prepare one reviewed prerequisite through microdots-extend rather than extending the framework silently. One ordinary MicroDot, with no batch and no missing capability, belongs to bespoke-agentics:microdots-new-micro or the checkout's own new-micro skill. A request that names the extension up front starts at microdots-suite.
 ---
 
 # Generate MicroDots
@@ -8,6 +8,23 @@ description: Generate MicroDots in resumable batches through the repository comp
 Read the suite [working contract](../microdots-suite/references/working-contract.md)
 and [generation lanes](references/generation-lanes.md). For multiple items also
 read the [batch protocol](../microdots-suite/references/batch-protocol.md).
+
+## Check the request is yours
+
+Before planning anything, confirm the request is a batch. It is yours when it
+asks for several MicroDots, resumes or recovers a partial batch, or carries a
+dependency between items.
+
+A single ordinary MicroDot is not. Hand it to the checkout's `.claude/skills/new-micro/`
+or to `bespoke-agentics:microdots-new-micro`, and say which. That skill may be
+configured not to fire on its own — invoke it by name rather than assuming it
+will pick the work up. Only when no such skill is available do you generate the
+single dot here, and say that you did so for lack of a better provider.
+
+A request that names a framework extension up front ("add a chart primitive, then
+build three dots using it") is compound work: it starts at
+[microdots-suite](../microdots-suite/SKILL.md), which orders the prerequisite
+before its dependents. What belongs to you is the gap you *discover* mid-batch.
 
 ## Plan the batch
 

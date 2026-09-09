@@ -1,12 +1,32 @@
 ---
 name: microdots-extract
-description: Scan a MicroDots checkout and selected external repositories for reusable fragments, rank evidence-backed candidates with provenance, dependencies and adaptation cost, then adapt only the candidates the user selects into tested MicroDots building blocks. Use for reuse discovery, "what in here is worth extracting", and deliberate fragment-level extraction with a selection step. Not for porting a whole foreign application or a whole feature end to end — those belong to the porting skills; this one ranks fragments and extracts a chosen subset.
+description: Scan a MicroDots checkout and selected external repositories for reusable fragments, rank candidates with provenance, dependencies and adaptation cost, then adapt only the ones the user selects. Use for "what in here is worth extracting", "find reusable pieces across these repos", "scan for reuse", "is this worth pulling out" — discovery and ranking first, with a selection step before any code moves. Not for "port this app to MicroDots" or "carve feature X out of app Y" (bespoke-agentics:microdots-port-app, microdots-port-feature): those name their target up front and port it whole, while this one starts without a named target and produces a ranked shortlist.
 ---
 
 # Discover and extract reusable fragments
 
 Read the [working contract](../microdots-suite/references/working-contract.md) and
 [candidate record](references/candidate-record.md).
+
+## Check the request is yours
+
+Apply one test: **did the user name the target?**
+
+A request that names what to move — "port this app to MicroDots", "carve the
+filter bar out of the admin app", "turn this feature into a micro" — is a port.
+The decision of what to take is already made; the work is re-expressing it whole.
+Route it to `bespoke-agentics:microdots-port-app` or `microdots-port-feature`.
+
+A request that names only a *place to look* — "what in here is worth extracting",
+"scan these repos for reuse", "is any of this reusable" — is yours. The decision
+of what to take is the deliverable: you produce a ranked shortlist and the user
+selects from it before any code moves.
+
+The ambiguous middle is real. "Extract the filter bar so we can reuse it" names a
+target but asks about reuse. Resolve it by asking whether the user wants a
+shortlist or wants that one thing moved, rather than guessing. If the user has
+already named an exact fragment and destination, skip the election and scope the
+work directly.
 
 ## Scan the requested scope
 
@@ -16,8 +36,11 @@ repository into a separate location when necessary. Exclude generated outputs,
 dependency trees, credentials and unrelated private areas. Read relevant license
 and provenance information before copying material.
 
-Use Rig for indexed graph questions, then source reads to verify candidates; use
-`rg` when a source is unindexed. Trace behavior through UI, state, contracts,
+Use Rig light tools for indexed graph questions when that MCP server is
+available, then source reads to verify every candidate. When Rig is absent, or
+the source is simply unindexed, use `rg` and ordinary reads — this changes how
+long the scan takes, never what counts as evidence. State which route you used,
+because an unindexed scan has weaker recall and the ranking inherits that. Trace behavior through UI, state, contracts,
 service/storage and dependencies rather than ranking files by superficial
 similarity. Independent subagents may inspect disjoint repositories or features
 and return candidate records without changing source.

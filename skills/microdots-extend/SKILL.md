@@ -1,6 +1,6 @@
 ---
 name: microdots-extend
-description: Add or evolve MicroDots framework vocabulary — compiler shapes, capabilities, backend UI primitives, data connectors, reusable components and shared runtime primitives — through to catalog generation and Platform exposure. Use when a requested MicroDot cannot be expressed by the current catalog, when a new primitive or connector must become selectable in authoring, or when changing the public semantics of one that already exists. Covers versioning, pinned consumers, migration and rollback analysis. Not for building an application out of vocabulary that already exists.
+description: Add or evolve MicroDots framework vocabulary. Use for "we need a data connector for X", "add a chart primitive", "make this capability selectable in authoring", "add a new shape", "change what this capability accepts" — compiler shapes, capabilities, backend UI primitives, data connectors, reusable components and shared runtime primitives, carried through catalog generation to Platform exposure, including versioning, pinned consumers, migration and rollback. Not for building an application out of vocabulary that already exists, and not for how a dot looks (bespoke-agentics:microdots-design).
 ---
 
 # Extend the framework and catalogs

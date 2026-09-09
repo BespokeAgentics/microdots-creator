@@ -1,6 +1,6 @@
 ---
 name: microdots-suite
-description: Route framework-owner work on a MicroDots checkout to the right suite skill, and coordinate work spanning several of them: batch generation, compiler and catalog extension, reusable-fragment extraction, catalog lifecycle, and completion evidence. Use when a request names more than one of those operations, when a batch needs a plan and a dependency order, or when it is unclear which MicroDots workflow applies. Not for a single ordinary MicroDot, a blank-dot diagnosis, a design change, or a deploy.
+description: Route and coordinate framework-owner work on a MicroDots checkout. Use for "generate these five dots", "add a capability then build the dots that need it", "scan these repos for what we can reuse", "close out the batch" — and for any request naming more than one of: batch generation, compiler/catalog extension, fragment extraction, catalog lifecycle, completion evidence. Not for a single ordinary MicroDot (bespoke-agentics:microdots-new-micro), a blank or stale dot (microdots-debug-blank), a plain done-check (microdots-verify), how a dot looks (microdots-design), porting a whole app or feature (microdots-port-app, microdots-port-feature), or a deploy (microdots-deploy).
 ---
 
 # MicroDots creator suite
@@ -17,7 +17,7 @@ name it in the run record. The plugin's own bundled files are reachable at
 
 | Request | Skill |
 | --- | --- |
-| Generate one or many MicroDots; resume a batch | [microdots-generate](../microdots-generate/SKILL.md) |
+| Generate several MicroDots; resume or recover a batch | [microdots-generate](../microdots-generate/SKILL.md) |
 | Add a core primitive, shape, capability, component, or data connector | [microdots-extend](../microdots-extend/SKILL.md) |
 | Find and extract reusable fragments from selected repositories | [microdots-extract](../microdots-extract/SKILL.md) |
 | Inspect, update, version, replace, deprecate, retire, or reinstate | [microdots-manage](../microdots-manage/SKILL.md) |
@@ -54,20 +54,29 @@ individually. No batch-wide success while a required item remains incomplete.
 
 ## Neighbouring guidance
 
-This suite owns framework-owner work. Four adjacent jobs belong elsewhere, and
-the workspace decides where: single-dot authoring, blank-dot diagnosis, workspace
-verification, and deployment.
+This suite owns framework-owner work: batches, compiler and catalog vocabulary,
+extraction, lifecycle, evidence. Six adjacent jobs belong elsewhere.
 
-Discover what is actually available before routing to any of them. List the
-checkout's own `.claude/skills/` directory, and check the installed skills for
-equivalents (the `bespoke-agentics` plugin ships `microdots-new-micro`,
-`microdots-debug-blank`, `microdots-verify` and `microdots-deploy`). Prefer the
-checkout's copy when both exist — it is versioned with the code it describes.
-Name the one you chose in the run record. If none exists, say so and proceed
-with this suite's own rules rather than citing a skill that is not installed.
+| Adjacent job | Route to |
+| --- | --- |
+| One ordinary MicroDot, no batch, no missing capability | single-dot authoring |
+| Blank, stale, or service-unreachable dot | blank-dot diagnosis |
+| "Is this change done" with no batch or catalog claim | workspace verification |
+| How a dot looks | design |
+| Port a named app or a named feature whole | porting |
+| Publish to a real environment | deployment |
 
-This suite carries the compiler, boundary and browser rules it needs, so a
-missing neighbour degrades scope, not correctness. Porting skills for foreign
-applications supply deeper source analysis when installed and requested.
-Deployment is always a separately requested operation, never implied by
-generation or verification.
+Resolve each route at the moment you need it, not up front, and in this order.
+
+1. List the checkout's own `.claude/skills/`. Prefer a match there — it is
+   versioned alongside the code it describes.
+2. Otherwise use an installed plugin skill. The `bespoke-agentics` plugin
+   conventionally covers all six. Do not assume its inventory: name the skill you
+   are routing to and let the model's own skill list confirm it exists.
+3. If neither is available, say so plainly and continue under this suite's rules.
+   Never cite a skill you did not confirm.
+
+Record which provider you chose. This suite carries the compiler, boundary and
+browser rules it needs, so a missing neighbour narrows scope rather than
+threatening correctness. Deployment is always a separately requested operation,
+never implied by generation or verification.
