@@ -1,0 +1,3 @@
+interface:
+  display_name: "Extend MicroDots"
+  short_description: "Add framework primitives and catalog capabilities"

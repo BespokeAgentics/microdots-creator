@@ -1,0 +1,3 @@
+interface:
+  display_name: "Extract MicroDots Fragments"
+  short_description: "Discover and extract selected reusable fragments"

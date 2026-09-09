@@ -1,0 +1,3 @@
+interface:
+  display_name: "Generate MicroDots"
+  short_description: "Generate and resume verified MicroDot batches"

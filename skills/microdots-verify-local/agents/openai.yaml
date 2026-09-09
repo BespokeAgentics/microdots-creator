@@ -1,0 +1,3 @@
+interface:
+  display_name: "Verify MicroDots Locally"
+  short_description: "Prove browser behavior and local catalog usability"
